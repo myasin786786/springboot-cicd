@@ -14,6 +14,11 @@ public class CicdApplication {
 		return "Welcome aliimran2000 !!!";
 	}
 
+	@GetMapping("/goodby")
+	public String goodby(){
+		return "Goodbye aliimran2000 !!!";
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(CicdApplication.class, args);
 	}
