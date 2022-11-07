@@ -10,12 +10,12 @@ name: Maven build and push to ECR
 
 on:
   push:
-    #branches: ["master"]
     tags: [v*]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
 
     steps:
       - name: Check out code
