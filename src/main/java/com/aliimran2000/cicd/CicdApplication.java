@@ -19,6 +19,11 @@ public class CicdApplication {
 		return "Goodbye aliimran2000 !!!";
 	}
 
+	@GetMapping("/sada")
+	public String sada(){
+		return "sadapay !!!";
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(CicdApplication.class, args);
 	}
