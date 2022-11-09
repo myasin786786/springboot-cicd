@@ -73,7 +73,8 @@ jobs:
           IMAGE_TAG: ${{ github.ref_name }}
           PORT: "8080"
         run: |
-          ssh -i ~/.ssh/key.pem ${{env.USER}}@${{env.DEPLOYMENT_IP}} << EOF
+          cat ~/.ssh/key.pem
+          ssh -i ~/.ssh/key.pem ${{env.USER}}@${{env.DEPLOYMENT_IP}} -o UserKnownHostsFile=/github/home/.ssh/known_hosts << EOF
             docker pull ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
             docker stop ${{ env.ECR_REPOSITORY }}
             docker rm -f ${{ env.ECR_REPOSITORY }}
