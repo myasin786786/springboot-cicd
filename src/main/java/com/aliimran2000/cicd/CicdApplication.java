@@ -28,6 +28,12 @@ public class CicdApplication {
 	public String Hey(){
 		return "Hey !!!";
 	}
+	
+	@GetMapping("")
+	public String MyPage(){
+		return "This is the page !!!";
+	}
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(CicdApplication.class, args);

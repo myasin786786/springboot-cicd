@@ -75,9 +75,7 @@ jobs:
           ECR_REPOSITORY: sadapay-interview
           IMAGE_TAG: ${{ github.ref_name }}
           PORT: "8080"
-        run: |
-          cat ~/.ssh/key.pem
-          
+        run: |  
           ssh -i ~/.ssh/key.pem -o StrictHostKeyChecking=no ${{env.USER}}@${{env.DEPLOYMENT_IP}}  << EOF
             sudo docker pull ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
             sudo docker stop ${{ env.ECR_REPOSITORY }}
