@@ -65,7 +65,7 @@ jobs:
           echo '${{env.KEY_FILE}}' > ~/.ssh/key.pem
           chmod 600 ~/.ssh/key.pem
           echo '${{env.DEPLOYMENT_IP}}' > ~/.ssh/known_hosts
-          sudo chmod 600 ~/.ssh/known_host
+          sudo chmod 600 ~/.ssh/known_hosts
 
       - name: SSH into instance
         env:
