@@ -59,10 +59,13 @@ jobs:
       - name: Setup SSH with EC2
         env:
           KEY_FILE: ${{secrets.ACCESS_KEY_FILE}}
+          DEPLOYMENT_IP: ${{secrets.DEPLOYMENT_IP}}
         run: |
           mkdir -p ~/.ssh/
           echo '${{env.KEY_FILE}}' > ~/.ssh/key.pem
           chmod 600 ~/.ssh/key.pem
+          echo '${{env.DEPLOYMENT_IP}}' > ~/.ssh/known_hosts
+          sudo chmod 600 ~/.ssh/known_host
 
       - name: SSH into instance
         env:
@@ -74,7 +77,8 @@ jobs:
           PORT: "8080"
         run: |
           cat ~/.ssh/key.pem
-          ssh -i ~/.ssh/key.pem ${{env.USER}}@${{env.DEPLOYMENT_IP}} -o UserKnownHostsFile=/github/home/.ssh/known_hosts << EOF
+          
+          ssh -i ~/.ssh/key.pem -o StrictHostKeyChecking no ${{env.USER}}@${{env.DEPLOYMENT_IP}}  << EOF
             docker pull ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
             docker stop ${{ env.ECR_REPOSITORY }}
             docker rm -f ${{ env.ECR_REPOSITORY }}
