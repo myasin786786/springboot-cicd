@@ -60,6 +60,7 @@ jobs:
         env:
           KEY_FILE: ${{secrets.ACCESS_KEY_FILE}}
         run: |
+          mkdir -p ~/.ssh/
           echo '${{env.KEY_FILE}}' > ~/.ssh/key.pem
           chmod 600 ~/.ssh/key.pem
 
