@@ -79,9 +79,9 @@ jobs:
           cat ~/.ssh/key.pem
           
           ssh -i ~/.ssh/key.pem -o StrictHostKeyChecking=no ${{env.USER}}@${{env.DEPLOYMENT_IP}}  << EOF
-            docker pull ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
-            docker stop ${{ env.ECR_REPOSITORY }}
-            docker rm -f ${{ env.ECR_REPOSITORY }}
-            docker image tag ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} ${{ env.ECR_REPOSITORY }}:latest
-            docker run -p ${{env.PORT}}:8080 --name ${{ env.ECR_REPOSITORY }} ${{ env.ECR_REPOSITORY }}:latest  
+            sudo docker pull ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
+            sudo docker stop ${{ env.ECR_REPOSITORY }}
+            sudo docker rm -f ${{ env.ECR_REPOSITORY }}
+            sudo docker image tag ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} ${{ env.ECR_REPOSITORY }}:latest
+            sudo docker run -p ${{env.PORT}}:8080 --name ${{ env.ECR_REPOSITORY }} ${{ env.ECR_REPOSITORY }}:latest  
           EOF
