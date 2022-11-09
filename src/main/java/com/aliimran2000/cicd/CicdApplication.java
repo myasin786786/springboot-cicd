@@ -24,6 +24,11 @@ public class CicdApplication {
 		return "sadapay !!!";
 	}
 
+	@GetMapping("/")
+	public String Hey(){
+		return "Hey !!!";
+	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(CicdApplication.class, args);
 	}
