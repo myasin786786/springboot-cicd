@@ -1,0 +1,11 @@
+FROM openjdk:20-ea-jdk-slim-bullseye
+
+WORKDIR /app
+COPY . /app/
+RUN apt-get update && apt install maven -y
+RUN mvn clean install
+ADD target/springboot-image.jar /app/springboot-image.jar
+
+EXPOSE 8080
+
+ENTRYPOINT [ "java", "-jar","/app/springboot-image.jar" ]
