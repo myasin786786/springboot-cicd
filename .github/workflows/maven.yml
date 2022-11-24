@@ -80,5 +80,5 @@ jobs:
             sudo docker stop ${{ env.ECR_REPOSITORY }}
             sudo docker rm -f ${{ env.ECR_REPOSITORY }}
             sudo docker image tag ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }} ${{ env.ECR_REPOSITORY }}:latest
-            sudo docker run -p ${{env.PORT}}:8080 --name ${{ env.ECR_REPOSITORY }} ${{ env.ECR_REPOSITORY }}:latest  
+            sudo docker run -p -d ${{env.PORT}}:8080 --name ${{ env.ECR_REPOSITORY }} ${{ env.ECR_REPOSITORY }}:latest  
           EOF
